@@ -3,16 +3,15 @@ spring:
     name: business-wechat-server
   profiles:
     active: dev
-cloud:
+  cloud:
     config:
       fail-fast: true
       discovery:
         service-id: system-config-server
         enabled: true
       profile: ${spring.profiles.active}
-      label: ${spring.profiles.active}  
-logging:
-  config: classpath:logback.xml
+      label: ${spring.profiles.active}
+
 ---
 spring:
   profiles: dev
@@ -23,18 +22,18 @@ eureka:
     lease-expiration-duration-in-seconds: 10
   client:
     serviceUrl:
-      defaultZone: http://localhost:1001/eureka
+      defaultZone: http://admin:liuweijw@localhost:1001/eureka
 business:
   permission:
     enabled: true
   config:
     wechat:
       mp:
-        appId: wx982b91b8f36011ea
-        secret: 5d97ad50df8fd220009b3c4e0dc4a414
-        token: 
+        appId: xxx
+        secret: xxxxxx
+        token:
         aesKey:
-        authUrl: https://ef72d492.ngrok.io
+        authUrl: https://xxxxxx
 
 ---
 spring:
@@ -77,4 +76,3 @@ business:
         token:
         aesKey:
         authUrl: https://xxxxxx
-...

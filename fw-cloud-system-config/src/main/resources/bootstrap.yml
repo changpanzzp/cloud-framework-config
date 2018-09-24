@@ -5,16 +5,14 @@ spring:
   application:
     name: system-config-server
   profiles:
-    active: dev #native访问本地配置 dev 打开git配置
+    active: native #native访问本地配置    dev打开git配置
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/dengshidang/cloud-framework-config.git # 配置git仓库的地址
-          username : dengshidang
-          password : hkx13539176583
-          default-label: ${spring.profiles.active}
-          search-paths:  /**  # git仓库地址下的相对地址，可以配置多个，用,分割。
+        #git:
+          #uri: https://github.com/liuweijw/fw-cloud-framework-config.git # 配置git仓库的地址
+          #default-label: ${spring.profiles.active}
+          #search-paths:                                                  # git仓库地址下的相对地址，可以配置多个，用,分割。
         native:
           searchLocations: classpath:/shared							 # 本地环境配置
 ---
@@ -28,9 +26,10 @@ eureka:
     #表示eureka server至上一次收到client的心跳之后，等待下一次心跳的超时时间，在这个时间内若没收到下一次心跳，则将移除该instance
     lease-expiration-duration-in-seconds: 10 # 续约到期时间（默认90秒）
   client:
+    healthcheck:
+      enabled: true # 开启健康检查（依赖spring-boot-starter-actuator）
     serviceUrl:
-      defaultZone: http://localhost:1001/eureka 
-   
+      defaultZone: http://admin:liuweijw@localhost:1001/eureka
       #开启密码模式 http://${userName}:${password}@localhost:1001/eureka
     registry-fetch-interval-seconds: 10
 ---
@@ -42,11 +41,11 @@ eureka:
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 10
   client:
-      healthcheck:
+    healthcheck:
       enabled: true # 开启健康检查（依赖spring-boot-starter-actuator）
-      serviceUrl:
+    serviceUrl:
       defaultZone: http://admin:liuweijw@localhost:1001/eureka
-      registry-fetch-interval-seconds: 10
+    registry-fetch-interval-seconds: 10
 ---
 spring:
   profiles: untest
@@ -81,4 +80,3 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://admin:liuweijw@localhost:1001/eureka
-...
