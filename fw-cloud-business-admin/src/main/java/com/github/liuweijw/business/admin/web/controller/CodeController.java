@@ -21,9 +21,8 @@ import com.google.code.kaptcha.Producer;
 
 /**
  * 图像验证码服务
- * @author dengshidang
- * @version 2018年9月24日下午8:13:44
- * @description
+ * 
+ * @author liuweijw
  */
 @Controller
 @PrePermissions(value = Module.CODE, required = false)

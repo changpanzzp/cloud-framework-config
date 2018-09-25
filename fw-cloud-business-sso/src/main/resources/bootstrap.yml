@@ -22,7 +22,7 @@ eureka:
     lease-expiration-duration-in-seconds: 20
   client:
     serviceUrl:
-      defaultZone: http://admin:liuweijw@localhost:1001/eureka
+      defaultZone: http://localhost:1001/eureka
 ---
 spring:
   profiles: untest

@@ -31,10 +31,9 @@ import com.github.liuweijw.commons.base.page.PageParams;
 import com.github.liuweijw.commons.utils.StringHelper;
 
 /**
- * 医院所属服务
- * @author dengshidang
- * @version 2018年9月24日下午8:14:29
- * @description
+ * 部门管理服务
+ * 
+ * @author liuweijw
  */
 @RestController
 @RequestMapping("/dept")
