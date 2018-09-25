@@ -3,15 +3,51 @@ spring:
     name: business-wechat-server
   profiles:
     active: dev
-  cloud:
-    config:
-      fail-fast: true
-      discovery:
-        service-id: system-config-server
-        enabled: true
-      profile: ${spring.profiles.active}
-      label: ${spring.profiles.active}
-
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/fw-cloud-wechat?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  zipkin:
+    rabbitmq:
+      queue: zipkin
+  sleuth:
+    sampler:
+      percentage: 0.5  
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  redis:
+    remote: true        #是否是开启缓存
+    host: 192.168.152.144
+    port: 6379
+    password:
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+  http:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+server:
+  port: 80
+cache:
+  redis:
+    expiration: 3600
+ 
+logging:
+  config: classpath:logback.xml
 ---
 spring:
   profiles: dev
@@ -22,18 +58,18 @@ eureka:
     lease-expiration-duration-in-seconds: 10
   client:
     serviceUrl:
-      defaultZone: http://admin:liuweijw@localhost:1001/eureka
+      defaultZone: http://localhost:1001/eureka
 business:
   permission:
     enabled: true
   config:
     wechat:
       mp:
-        appId: xxx
-        secret: xxxxxx
-        token:
+        appId: wx982b91b8f36011ea
+        secret: 5d97ad50df8fd220009b3c4e0dc4a414
+        token: 
         aesKey:
-        authUrl: https://xxxxxx
+        authUrl: https://ef72d492.ngrok.io
 
 ---
 spring:
@@ -76,3 +112,4 @@ business:
         token:
         aesKey:
         authUrl: https://xxxxxx
+...
