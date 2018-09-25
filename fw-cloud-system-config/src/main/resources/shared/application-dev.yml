@@ -60,17 +60,17 @@ feign:
       enabled: true
 
 hystrix:
-  threadpool:
+   threadpool:
+     default:
+       coreSize: 500
+       maxQueueSize: 1000
+       queueSizeRejectionThreshold: 800
+   command:
     default:
-      coreSize: 500
-      maxQueueSize: 1000
-      queueSizeRejectionThreshold: 800
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 60000
+       execution:
+         isolation:
+           thread:
+             timeoutInMilliseconds: 60000
                
 management:
   security:
